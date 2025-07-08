@@ -5,7 +5,7 @@
 
 :link:Taken data: [Ukrainian statistics](https://www.ukrstat.gov.ua/)
 
-👁️‍🗨️## quick review
+## 👁️‍🗨️quick review
 
 📎here you can quickly browse the project details and see basic information about my skills and research results
 ### :seedling:DATA PREPARING
