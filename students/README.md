@@ -1,7 +1,9 @@
 # Second project (Ukraine language)
 ### Project topic:"Аналіз трендів спеціальностей серед студентів-абітурієнтів та міграція студентів в межах України станом на 2024р."
 ## URL`s:
- [google sheets](https://docs.google.com/spreadsheets/d/1R2hXVKAsfAQKLahKRRTUSxw-RTHESKqZBS0ItFWnuKM/edit?usp=sharing)
+Prepared data and DashBoard: [google sheets](https://docs.google.com/spreadsheets/d/1R2hXVKAsfAQKLahKRRTUSxw-RTHESKqZBS0ItFWnuKM/edit?usp=sharing)
+
+Taken data: [Ukrainian statistics](https://www.ukrstat.gov.ua/)
 ## quick review
 here you can quickly browse the project details and see basic information about my skills and research results
 ### DATA PREPARING
