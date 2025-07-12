@@ -51,12 +51,12 @@ WITH total_costs AS -- CTE with total purchase per person
 				PARTITION BY customer_id 
 				ORDER BY transaction_date ASC)
 		 	,transaction_date
-		) 							  AS previous_date
+		) 						AS previous_date
 		, transaction_date - 
 		  lag(transaction_date) OVER(
 			PARTITION BY customer_id 
 			ORDER BY transaction_date ASC
-		) 							  AS day_diff
+		) 						AS day_diff
 	FROM sales
 	order by 1, 2
 )
@@ -66,14 +66,14 @@ SELECT
 	, c.first_name
 	, c.last_name
 	, tc.sum_costs
-	, ai.average_invoice 						  AS avg_invoice
+	, ai.average_invoice 			AS avg_invoice
 	, trc.transaction_count 
 	, flt.min_transaction_date
 	, flt.max_transaction_date
 	, apbm.average_profit_by_month
 	, SUM(i.day_diff) OVER(
 		PARTITION BY tc.customer_id
-		)/trc.transaction_count 				  AS avg_day_diff
+		)/trc.transaction_count 	AS avg_day_diff
 FROM customers c
 JOIN total_costs tc USING(customer_id)
 JOIN avg_invoice ai USING(customer_id)
