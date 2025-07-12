@@ -1,4 +1,4 @@
-WITH total_costs AS --total purchase per person
+WITH total_costs AS -- CTE with total purchase per person
 (
 	SELECT 
 		DISTINCT customer_id
@@ -6,7 +6,7 @@ WITH total_costs AS --total purchase per person
 	FROM sales
 ) 
 
-, avg_invoice AS --average list price per person
+, avg_invoice AS -- CTE with average list price per person
 (
 	SELECT 
 		DISTINCT customer_id
@@ -14,7 +14,7 @@ WITH total_costs AS --total purchase per person
 	FROM sales
 )
 
-, trans_count AS --transactions count per person
+, trans_count AS -- CTE with transactions count per person
 (
 	SELECT 	
 		DISTINCT customer_id
@@ -31,7 +31,7 @@ WITH total_costs AS --total purchase per person
 	FROM sales
 )
 
-, avg_profit_by_month AS --AVG profit from one customer by month 
+, avg_profit_by_month AS -- CTE with average profit from one customer by month 
 (
 SELECT 
 	DISTINCT customer_id
@@ -41,7 +41,7 @@ FROM sales
 ORDER BY 1, 3
 )
 
-, interval AS --interval between purchases one person
+, interval AS -- CTE interval between purchases one person
 (
 SELECT 
 	customer_id
@@ -62,7 +62,7 @@ order by 1, 2
 )
 
 SELECT 
-	 Distinct tc.customer_id
+	 Distinct tc.customer_id --merging data from CTE`s and add average day diff between transactions per person
 	, c.first_name
 	, c.last_name
 	, tc.sum_costs
