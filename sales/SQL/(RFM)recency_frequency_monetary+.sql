@@ -75,7 +75,6 @@ WITH first_block AS --more info soon
 			) 					AS profit_by_state
 	FROM sales s
 	LEFT JOIN address a USING(customer_id)
-	ORDER BY 1
 )
 
 , fifth_block AS --need a remake 7
