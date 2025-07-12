@@ -2,7 +2,7 @@ WITH total_costs AS -- CTE with total purchase per person
 (
 	SELECT 
 		DISTINCT customer_id
-		, SUM(list_price) OVER(PARTITION BY customer_id) AS sum_costs
+		, SUM(list_price) OVER(PARTITION BY customer_id) 	  AS sum_costs
 	FROM sales
 ) 
 
@@ -10,7 +10,7 @@ WITH total_costs AS -- CTE with total purchase per person
 (
 	SELECT 
 		DISTINCT customer_id
-		, ROUND(AVG(list_price) OVER(PARTITION BY customer_id),2) as average_invoice
+		, ROUND(AVG(list_price) OVER(PARTITION BY customer_id),2) AS average_invoice
 	FROM sales
 )
 
@@ -18,7 +18,7 @@ WITH total_costs AS -- CTE with total purchase per person
 (
 	SELECT 	
 		DISTINCT customer_id
-		, COUNT(*) OVER(PARTITION BY customer_id) as transaction_count
+		, COUNT(*) OVER(PARTITION BY customer_id) 		  AS transaction_count
 	FROM sales
 )
 
@@ -26,39 +26,39 @@ WITH total_costs AS -- CTE with total purchase per person
 (
 	SELECT 
 		DISTINCT customer_id
-		,MIN(transaction_date) OVER(PARTITION BY customer_id) AS min_transaction_date
-		,MAX(transaction_date) OVER(PARTITION BY customer_id) AS max_transaction_date
+		,MIN(transaction_date) OVER(PARTITION BY customer_id) 	  AS min_transaction_date
+		,MAX(transaction_date) OVER(PARTITION BY customer_id) 	  AS max_transaction_date
 	FROM sales
 )
 
 , avg_profit_by_month AS -- CTE with average profit from one customer by month 
 (
-SELECT 
-	DISTINCT customer_id
-	, ROUND(AVG(profit) OVER(PARTITION BY customer_id),2) as average_profit_by_month
-	, ROW_NUMBER() OVER(PARTITION BY customer_id) AS filter
-FROM sales
-ORDER BY 1, 3
+	SELECT 
+		DISTINCT customer_id
+		, ROUND(AVG(profit) OVER(PARTITION BY customer_id),2) 	  AS average_profit_by_month
+		, ROW_NUMBER() OVER(PARTITION BY customer_id) 		  AS filter
+	FROM sales
+	ORDER BY 1, 3
 )
 
 , interval AS -- CTE interval between purchases one person
 (
-SELECT 
-	customer_id
-	, transaction_date
-	, COALESCE(
-		lag(transaction_date) OVER(
+	SELECT 
+		customer_id
+		, transaction_date
+		, COALESCE(
+			lag(transaction_date) OVER(
+				PARTITION BY customer_id 
+				ORDER BY transaction_date ASC)
+		 	,transaction_date
+		) 							  AS previous_date
+		, transaction_date - 
+		  lag(transaction_date) OVER(
 			PARTITION BY customer_id 
-			ORDER BY transaction_date ASC)
-	 	,transaction_date
-	) AS previous_date
-	, transaction_date - 
-	  lag(transaction_date) OVER(
-		PARTITION BY customer_id 
-		ORDER BY transaction_date ASC
-	) AS day_diff
-FROM sales
-order by 1, 2
+			ORDER BY transaction_date ASC
+		) 							  AS day_diff
+	FROM sales
+	order by 1, 2
 )
 
 SELECT 
@@ -66,19 +66,21 @@ SELECT
 	, c.first_name
 	, c.last_name
 	, tc.sum_costs
-	, ai.average_invoice AS avg_invoice
+	, ai.average_invoice 						  AS avg_invoice
 	, trc.transaction_count 
 	, flt.min_transaction_date
 	, flt.max_transaction_date
 	, apbm.average_profit_by_month
-	, SUM(i.day_diff) OVER(PARTITION BY tc.customer_id)/trc.transaction_count AS avg_day_diff
+	, SUM(i.day_diff) OVER(
+		PARTITION BY tc.customer_id
+		)/trc.transaction_count 				  AS avg_day_diff
 FROM customers c
-JOIN total_costs tc   			     USING(customer_id)
-JOIN avg_invoice ai   		 		 USING(customer_id)
-JOIN trans_count trc    	 		 USING(customer_id)
-JOIN first_and_last_transaction flt  USING(customer_id)
-JOIN avg_profit_by_month apbm 		 USING(customer_id)
-JOIN interval i 			 		 USING(customer_id)
+JOIN total_costs tc USING(customer_id)
+JOIN avg_invoice ai USING(customer_id)
+JOIN trans_count trc USING(customer_id)
+JOIN first_and_last_transaction flt USING(customer_id)
+JOIN avg_profit_by_month apbm USING(customer_id)
+JOIN interval i USING(customer_id)
 WHERE apbm.filter=1;
 
 
