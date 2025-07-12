@@ -33,3 +33,10 @@ Also, data on Vouchers was neglected due to the almost non-existent reporting on
 ![image](https://github.com/user-attachments/assets/ddebe5d2-5192-4fe5-a53b-8b31fae06ae0)
 ![image](https://github.com/user-attachments/assets/387964e3-33de-4440-ab31-0c9183440c0c)
 
+# NOT DONE YET!!!!
+### portfolio divided by programs 
+🖇️This .md file will serve as a brief overview of my skills presented in the material above
+
+🔗My first proj in google sheets https://docs.google.com/spreadsheets/d/192K1SStzX3pPXUlqU6cPoZ3ul7pr-YdZVEo-Jw9PxlU/edit?usp=sharing
+
+🔗My second proj in google sheets https://docs.google.com/spreadsheets/d/1R2hXVKAsfAQKLahKRRTUSxw-RTHESKqZBS0ItFWnuKM/edit?usp=sharing
