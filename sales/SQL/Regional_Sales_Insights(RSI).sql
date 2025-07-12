@@ -11,7 +11,7 @@ WITH total_info AS --CTE with sum of list_price, profit, unique customers and AV
 	GROUP BY 1
 )
 
-, top_brands AS  -- CTE with top brands by number of transactions by state
+, top_brands AS  -- CTE with top brands by number of transactions by states
 (
 	SELECT 
 		a.state
