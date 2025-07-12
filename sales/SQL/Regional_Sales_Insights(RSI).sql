@@ -1,4 +1,4 @@
-WITH total_info AS
+WITH total_info AS --CTE with sum of list_price, profit, unique customers and AVG_invoice by states
 (
 	SELECT  
 		a.state
@@ -11,7 +11,7 @@ WITH total_info AS
 	GROUP BY 1
 )
 
-, top_brands AS 
+, top_brands AS  -- CTE with top brands by number of transactions by state
 (
 	SELECT 
 		a.state
@@ -26,7 +26,7 @@ WITH total_info AS
 	GROUP BY 1,2
 )
 
-SELECT 
+SELECT -- Merging data from two CTE`s
 	tb.state
 	, tb.top_brands_in_state
 	, ti.total_sales
