@@ -74,7 +74,6 @@ WITH first_block AS
 			) 					AS profit_by_state
 	FROM sales s
 	LEFT JOIN address a USING(customer_id)
-	ORDER BY 1
 )
 ----  First filter for eighth block  ----------------------------
 , fifth_block AS
