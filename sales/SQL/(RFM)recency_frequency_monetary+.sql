@@ -1,6 +1,5 @@
-SELECT * FROM sales ORDER BY customer_id;
-
-WITH first_block AS --more info soon
+----  General info about customers  ----------------------------
+WITH first_block AS
 (
 	SELECT 
 		  s.customer_id AS id
@@ -37,8 +36,8 @@ WITH first_block AS --more info soon
 	LEFT JOIN address a USING (customer_id)
 	GROUP BY 1,2,3,4,5,6,7,8,9
 )
-
-, second_block AS --more info soon
+----  Favorite brand, count of brands per person  ----------------------------
+, second_block AS 
 (
 	SELECT 
 		customer_id
@@ -52,8 +51,8 @@ WITH first_block AS --more info soon
 	FROM sales 
 	GROUP BY 1,2
 )
-
-, third_block AS --more info soon
+----  Brand list  ----------------------------
+, third_block AS 
 (
 	SELECT
 		customer_id
@@ -61,8 +60,8 @@ WITH first_block AS --more info soon
 	FROM sales
 	GROUP BY 1
 )
-
-, fourth_block AS --more info soon
+----  General info by states  ----------------------------
+, fourth_block AS
 (
 	SELECT 
 		s.customer_id
@@ -77,48 +76,54 @@ WITH first_block AS --more info soon
 	LEFT JOIN address a USING(customer_id)
 	ORDER BY 1
 )
-
-, fifth_block AS --need a remake 7
+----  First filter for eighth block  ----------------------------
+, fifth_block AS
 (
 	SELECT 
 		customer_id
-		, DATE_TRUNC('month', transaction_date)::DATE 	AS fifth_block_filter_one
-		, ROUND(AVG(list_price),2) 						AS AVG_number_of_expenses
-		, ROW_number() OVER (
-				PARTITION BY customer_id,DATE_TRUNC(
-					'month', transaction_date)
-				) 										AS fifth_block_filter_two
+		, DATE_TRUNC('month', transaction_date)::DATE AS month
+		, ROUND(AVG(list_price),2) AS month_avgListPrice
 	FROM sales
-	GROUP BY customer_id, DATE_TRUNC('month', transaction_date)
+	GROUP BY 1,2
+	ORDER BY 1,2 
 )
-
-, sixth_block AS --need a remake 7
-(
-	SELECT 
-		 customer_id
-		,fifth_block_filter_one
-		, LAG(AVG_number_of_expenses) OVER(
-				PARTITION BY customer_id  
-			) / AVG_number_of_expenses 		AS percent_diff
-		, (COUNT(*) OVER(
-			PARTITION BY customer_id)-1
-		  ) 								AS sixth_block_filter
-	FROM fifth_block
-	WHERE fifth_block_filter_two = 1
-)
-
-, seventh_block AS --need a remake 7
+----  Second filter for eighth block  ----------------------------
+, sixth_block AS
 (
 	SELECT 
 		customer_id
-		,ROUND(SUM(percent_diff) OVER(
-			PARTITION BY customer_id
-			)/sixth_block_filter*100,2) AS percentage_growth_of_costs
-	FROM sixth_block
-	WHERE percent_diff NOTNULL
+		, month
+		, month_avgListPrice
+		, LAG(month_avgListPrice) OVER(
+				PARTITION BY customer_id
+				) AS prev_month_avgListPrice
+	FROM fifth_block
 )
-
-, eighth_block AS --for nineth_block
+----  Third filter for eighth block  ----------------------------
+, seventh_block AS
+(
+	SELECT 
+		customer_id
+		, month
+		, COUNT(*) OVER(
+			partition by customer_id
+			)-1 AS filter_seventh_block
+		, (month_avgListPrice/prev_month_avgListPrice-1)*100 AS percentage_by_month
+	FROM sixth_block
+)
+----  Montly percentage growth of costs per person  ----------------------------
+, eighth_block AS
+(
+	SELECT 
+		customer_id
+		, ROUND((SUM(percentage_by_month) /
+			filter_seventh_block),2) AS percentage_growth_of_costs 
+	FROM seventh_block
+	WHERE percentage_by_month NOTNULL
+	GROUP BY 1, filter_seventh_block
+)
+----  Filter for tenth block  ----------------------------
+, nineth_block AS 
 (
 	SELECT 
 		customer_id	
@@ -128,45 +133,46 @@ WITH first_block AS --more info soon
 	FROM sales
 	GROUP BY 1
 )
-
-, nineth_block AS --more info soon
+----  RFM statistic per person from 1 to 5. R-recency; F-frequency; M-monetary  ----------------------------
+, tenth_block AS 
 (
 	SELECT 
 		customer_id
 	    ,NTILE(5) OVER (ORDER BY R_raw ASC) AS R
 		,NTILE(5) OVER (ORDER BY F_raw ASC) AS F
 		,NTILE(5) OVER (ORDER BY M_raw ASC) AS M
-	FROM eighth_block
+	FROM nineth_block
 )
-
+----  Grouping all blocks into one table  ----------------------------
 SELECT 
-	fb.id
-	, fb.name
-	, fb.state
-	, fb.property_val
-	, fb.age
-	, fb.tenure
-	, fb.wealth_segment
-	, fb.owns_car
-	, fb.total_cost
-	, fb.total_profit
-	, fb.avg_invoice_price
-	, fb.count_of_transac
---	, sixb.percentage_growth_of_costs
-	, fb.first_transac
-	, fb.last_transac
-	, fb.year_of_first_purchase
-	, sb.favorite_brand
-	, sb.brands_count
-	, thirdb.brands_list
+	DISTINCT firstb.id
+	, firstb.name
+	, firstb.state
 	, fourthb.sales_by_state
 	, fourthb.profit_by_state
-	, nb.R
-	, nb.F
-	, nb.M
-FROM first_block fb
-LEFT JOIN second_block sb ON fb.id=sb.customer_id
-LEFT JOIN third_block thirdb ON fb.id=thirdb.customer_id
-LEFT JOIN fourth_block fourthb ON fb.id=fourthb.customer_id
-LEFT JOIN nineth_block nb ON fb.id=nb.customer_id
-WHERE sb.second_filter_part=1;
+	, firstb.age
+	, firstb.property_val
+	, firstb.tenure
+	, firstb.total_cost
+	, firstb.total_profit
+	, firstb.avg_invoice_price
+	, firstb.count_of_transac
+	, einghthb.percentage_growth_of_costs
+	, firstb.first_transac
+	, firstb.last_transac
+	, firstb.year_of_first_purchase
+	, secondb.favorite_brand
+	, thirdb.brands_list
+	, secondb.brands_count
+	, firstb.wealth_segment
+	, firstb.owns_car
+	, tenth.R
+	, tenth.F
+	, tenth.M
+FROM first_block firstb
+LEFT JOIN second_block secondb ON firstb.id=secondb.customer_id
+LEFT JOIN third_block thirdb ON firstb.id=thirdb.customer_id
+LEFT JOIN fourth_block fourthb ON firstb.id=fourthb.customer_id
+LEFT JOIN eighth_block einghthb ON firstb.id=einghthb.customer_id
+LEFT JOIN tenth_block tenth ON firstb.id=tenth.customer_id
+WHERE secondb.second_filter_part=1;
