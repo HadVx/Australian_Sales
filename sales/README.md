@@ -1,42 +1,36 @@
-# :green_book:Second project (Ukrainian language) 
-### 👨‍🎓Project topic:"Аналіз трендів спеціальностей серед студентів-абітурієнтів та міграція студентів в межах України станом на 2024р."
+# :pushpin:Аналіз продажів велосипедів в Австралії 
+###
 ## 📜URL`s:
-:link:Prepared data and DashBoard: [google sheets](https://docs.google.com/spreadsheets/d/1R2hXVKAsfAQKLahKRRTUSxw-RTHESKqZBS0ItFWnuKM/edit?usp=sharing)
+:link:Prepared data and DashBoard: [google sheets](https://docs.google.com/spreadsheets/d/192K1SStzX3pPXUlqU6cPoZ3ul7pr-YdZVEo-Jw9PxlU/edit?usp=sharing)
 
-:link:Taken data: [Ukrainian statistics](https://www.ukrstat.gov.ua/)
+:link:Taken data: [GitHub_URL](https://github.com/Youtube-NikitaTymoshenko/googleSheets-course/tree/main/%D0%94%D0%B0%D0%BD%D1%96%20%D0%B4%D0%BB%D1%8F%20%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%B8)
 
-## 👁️‍🗨️quick review
+📎 Для детальнішого перегляду роботи запрошую в папки tables, power BI (в розробці), SQL та 🔗[google sheets](https://docs.google.com/spreadsheets/d/192K1SStzX3pPXUlqU6cPoZ3ul7pr-YdZVEo-Jw9PxlU/edit?usp=sharing) з повними версіями таблиць, коду та візуалізацій!
 
-📎here you can quickly browse the project details and see basic information about my skills and research results
-### :seedling:DATA PREPARING
-the list of 3 regions (Donetsk, Luhansk and Kherson) was intentionally removed due to the lack of data in these regions.
-Also, data on Vouchers was neglected due to the almost non-existent reporting on them
-***here will be only a few examples Before&After, more details at the link above***
+## :green_book: Основні приклади моїх можливостей в межах цього проекту.
+### 👁️‍🗨️Обробка даних в Google Sheets
+***Декілька таблиць у форматі ДО/ПІСЛЯ***
 
-:shit:Age. Before prepare
+Декілька слів: Обробка даних у таблицях відбувається після їх збору та включає перевірку на релевантність, доречність, достовірність, актуальність і унікальність (відсутність дублювання). Після цього дані трансформуються у реляційний формат.
 
-![1st](https://github.com/user-attachments/assets/8f7cbf7a-8108-4844-af79-95974896427b)
+### :shit:Transactions
+<img width="1918" height="796" alt="image" src="https://github.com/user-attachments/assets/971f6cdf-9a79-408d-9a5d-750eaef446de" />
 
-:fire:Age. After prepare
+### :fire:Transactions_clean
+<img width="1919" height="775" alt="image" src="https://github.com/user-attachments/assets/102a9100-4952-422d-afe8-bf8219c68028" />
 
-![image](https://github.com/user-attachments/assets/5673a216-4b37-4a8e-9c39-11b72466738d)
+### :shit:Customers
 
-:shit:Region. Before prepare
+<img width="1919" height="848" alt="image" src="https://github.com/user-attachments/assets/10cd5628-52ac-4094-a269-08e58e3d73ab" />
 
-![image](https://github.com/user-attachments/assets/288d24f2-3c2c-4b56-a920-ea8a3afa4b37)
+### :fire:Customers_clean
 
-:fire:Region. After prepare
+<img width="1919" height="857" alt="image" src="https://github.com/user-attachments/assets/a5c3c90b-7b60-48fc-b4ff-4bb8074c5648" />
 
-![image](https://github.com/user-attachments/assets/f935c6a5-7562-4555-ad10-935156f30392)
+### 📈 Візуалізація (DashBoard) 📉
 
-### 📈 Visualization (DashBoard) in 2 parts 📉
-![image](https://github.com/user-attachments/assets/ddebe5d2-5192-4fe5-a53b-8b31fae06ae0)
-![image](https://github.com/user-attachments/assets/387964e3-33de-4440-ab31-0c9183440c0c)
+<img width="1919" height="856" alt="image" src="https://github.com/user-attachments/assets/1d72b802-9d44-4a3b-95d0-21390fd8d901" />
+DashBoard є навчальним, взятим з курсу Google Sheets Нікіти Тімошенка.
 
-# NOT DONE YET!!!!
-### portfolio divided by programs 
-🖇️This .md file will serve as a brief overview of my skills presented in the material above
 
-🔗My first proj in google sheets https://docs.google.com/spreadsheets/d/192K1SStzX3pPXUlqU6cPoZ3ul7pr-YdZVEo-Jw9PxlU/edit?usp=sharing
-
-🔗My second proj in google sheets https://docs.google.com/spreadsheets/d/1R2hXVKAsfAQKLahKRRTUSxw-RTHESKqZBS0ItFWnuKM/edit?usp=sharing
+# не завершено!!
