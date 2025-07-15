@@ -16,14 +16,16 @@
 ### :shit:Transactions
 <img width="1918" height="796" alt="image" src="https://github.com/user-attachments/assets/971f6cdf-9a79-408d-9a5d-750eaef446de" />
 
-### :fire:Transactions_clean
+### :fire:Transactions_clean 
+Видалено дублікати та аномальні дані (на кшталт DOB: 1900-01-01), відформатовано дані та додано декілька стовпців з інших таблиць! Зведено до нормованого формату
 <img width="1919" height="775" alt="image" src="https://github.com/user-attachments/assets/102a9100-4952-422d-afe8-bf8219c68028" />
 
 ### :shit:Customers
+Видалено декілька невалідних стовпців, вилучені дублікати та аномальні дані (на кшталт DOB: 1900-01-01), відформатовано дані та додано декілька стовпців з інших таблиць! Зведено до нормованого формату
 
 <img width="1919" height="848" alt="image" src="https://github.com/user-attachments/assets/10cd5628-52ac-4094-a269-08e58e3d73ab" />
 
-### :fire:Customers_clean
+### :fire:Customers_clean 
 
 <img width="1919" height="857" alt="image" src="https://github.com/user-attachments/assets/a5c3c90b-7b60-48fc-b4ff-4bb8074c5648" />
 
