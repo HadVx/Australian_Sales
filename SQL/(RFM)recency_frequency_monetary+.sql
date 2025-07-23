@@ -1,4 +1,4 @@
-----  General info about customers  ----------------------------
+----  General info about customers  --------------------------------------------------------------------
 WITH first_block AS
 (
 	SELECT 
@@ -7,7 +7,7 @@ WITH first_block AS
 		|| ' ' || COALESCE(c.last_name,'') AS name
  		, a.state
 		, a.postcode
-		, a.property_valuation 			AS property_val
+		, a.property_valuation 		 AS property_val
 		, CASE 
 			WHEN s.age_clean BETWEEN 18 AND 25
 				THEN '18-25'
@@ -36,7 +36,7 @@ WITH first_block AS
 	LEFT JOIN address a USING (customer_id)
 	GROUP BY 1,2,3,4,5,6,7,8,9
 )
-----  Favorite brand, count of brands per person  ----------------------------
+----  Favorite brand, count of brands per person  ------------------------------------------------------
 , second_block AS 
 (
 	SELECT 
@@ -51,7 +51,7 @@ WITH first_block AS
 	FROM sales 
 	GROUP BY 1,2
 )
-----  Brand list  ----------------------------
+----  Brand list  --------------------------------------------------------------------------------------
 , third_block AS 
 (
 	SELECT
@@ -60,7 +60,7 @@ WITH first_block AS
 	FROM sales
 	GROUP BY 1
 )
-----  General info by states  ----------------------------
+----  General info by states  --------------------------------------------------------------------------
 , fourth_block AS
 (
 	SELECT 
@@ -75,7 +75,7 @@ WITH first_block AS
 	FROM sales s
 	LEFT JOIN address a USING(customer_id)
 )
-----  First filter for eighth block  ----------------------------
+----  First filter for eighth block  -------------------------------------------------------------------
 , fifth_block AS
 (
 	SELECT 
@@ -86,7 +86,7 @@ WITH first_block AS
 	GROUP BY 1,2
 	ORDER BY 1,2 
 )
-----  Second filter for eighth block  ----------------------------
+----  Second filter for eighth block  ------------------------------------------------------------------
 , sixth_block AS
 (
 	SELECT 
@@ -98,7 +98,7 @@ WITH first_block AS
 				) AS prev_month_avgListPrice
 	FROM fifth_block
 )
-----  Third filter for eighth block  ----------------------------
+----  Third filter for eighth block  -------------------------------------------------------------------
 , seventh_block AS
 (
 	SELECT 
@@ -110,7 +110,7 @@ WITH first_block AS
 		, (month_avgListPrice/prev_month_avgListPrice-1)*100 AS percentage_by_month
 	FROM sixth_block
 )
-----  Montly percentage growth of costs per person  ----------------------------
+----  Montly percentage growth of costs per person  ----------------------------------------------------
 , eighth_block AS
 (
 	SELECT 
@@ -121,7 +121,7 @@ WITH first_block AS
 	WHERE percentage_by_month NOTNULL
 	GROUP BY 1, filter_seventh_block
 )
-----  Filter for tenth block  ----------------------------
+----  Filter for tenth block  --------------------------------------------------------------------------
 , nineth_block AS 
 (
 	SELECT 
@@ -132,7 +132,7 @@ WITH first_block AS
 	FROM sales
 	GROUP BY 1
 )
-----  RFM statistic per person from 1 to 5. R-recency; F-frequency; M-monetary  ----------------------------
+----  RFM statistic per person from 1 to 5. R-recency; F-frequency; M-monetary  ------------------------
 , tenth_block AS 
 (
 	SELECT 
@@ -142,7 +142,19 @@ WITH first_block AS
 		,NTILE(5) OVER (ORDER BY M_raw ASC) AS M
 	FROM nineth_block
 )
-----  Grouping all blocks into one table  ----------------------------
+----  Favorite bike line  ------------------------------------------------------------------------------
+, eleventh_block AS
+(
+	SELECT customer_id
+		, product_line 						AS favorite_line
+		, Count(*) 							AS eleventh_block_filter
+		, row_number() OVER( PARTITION BY customer_id
+			ORDER BY count(*) DESC) 		AS second_eleventh_block_filter
+	FROM sales
+	GROUP BY 1,2
+)
+
+----  Grouping all blocks into one table  --------------------------------------------------------------
 SELECT 
 	DISTINCT firstb.id
 	, firstb.name
@@ -155,6 +167,7 @@ SELECT
 	, firstb.total_cost
 	, firstb.total_profit
 	, firstb.avg_invoice_price
+	, eleventhb.favorite_line
 	, firstb.count_of_transac
 	, einghthb.percentage_growth_of_costs
 	, firstb.first_transac
@@ -165,13 +178,15 @@ SELECT
 	, secondb.brands_count
 	, firstb.wealth_segment
 	, firstb.owns_car
-	, tenth.R
-	, tenth.F
-	, tenth.M
+	, tenthb.R
+	, tenthb.F
+	, tenthb.M
 FROM first_block firstb
 LEFT JOIN second_block secondb ON firstb.id=secondb.customer_id
 LEFT JOIN third_block thirdb ON firstb.id=thirdb.customer_id
 LEFT JOIN fourth_block fourthb ON firstb.id=fourthb.customer_id
 LEFT JOIN eighth_block einghthb ON firstb.id=einghthb.customer_id
-LEFT JOIN tenth_block tenth ON firstb.id=tenth.customer_id
-WHERE secondb.second_filter_part=1;
+LEFT JOIN tenth_block tenthb ON firstb.id=tenthb.customer_id
+LEFT JOIN eleventh_block eleventhb ON firstb.id=eleventhb.customer_id
+WHERE secondb.second_filter_part=1
+	AND eleventhb.second_eleventh_block_filter=1;
