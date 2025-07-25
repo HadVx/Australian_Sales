@@ -53,25 +53,59 @@
 <img width="1699" height="978" alt="image" src="https://github.com/user-attachments/assets/e2c2f399-2685-4850-b1cc-914471b1eb79" />
 Маю досвід написання великих кодів з десятком CTE блоків (RFM+.sql)
 
-### Power BI візуалізація (DashBoard) 
-1
-<img width="1280" height="773" alt="image" src="https://github.com/user-attachments/assets/6b9bd75e-54e7-476e-9062-f86dcb7a5d0a" />
-<img width="422" height="214" alt="image" src="https://github.com/user-attachments/assets/0850e019-cf60-4621-8749-a218920a9d5f" />
+### 📈Power BI візуалізація (DashBoard) 📉
+📰Створені в SQL таблиці імпортував в Power BI, на кожну таблицю виділив один аркуш (+1 аркуш в виді Tooltip-у до кожної сторінки, всього - 8 сторінок). Детальніше переглянути можна скачавши дані з SQL-директорії та саму візуалізацію в Power BI, нижче прикріплені скріншоти роботи! 
+### 1️⃣Загальна інформація по Продажам
 
-2
-<img width="1280" height="779" alt="image" src="https://github.com/user-attachments/assets/cba16295-81e2-4fdc-bdb8-1a819433c62f" />
+<img width="1280" height="773" alt="image" src="https://github.com/user-attachments/assets/6b9bd75e-54e7-476e-9062-f86dcb7a5d0a" />
+
+### 2️⃣Продажі по Брендам і Класам 
+
+<img width="1280" height="779" alt="image" src="https://github.com/user-attachments/assets/5365d585-d6ab-46b2-95b8-ec9cbc11df9d" />
 
 <img width="1280" height="779" alt="image" src="https://github.com/user-attachments/assets/32a49895-e0ba-4041-b117-d73b958abc3d" />
 
 <img width="1280" height="782" alt="image" src="https://github.com/user-attachments/assets/a3bcc8d3-3c0b-4c57-b77d-2debf3b9b69f" />
 
-<img width="1280" height="780" alt="image" src="https://github.com/user-attachments/assets/a43c482a-2d00-4ce8-a22a-50aec6b2c5a0" />
-<img width="424" height="315" alt="image" src="https://github.com/user-attachments/assets/1a193f03-2a19-4feb-935c-997ebdff0429" />
+<img width="1280" height="780" alt="image" src="https://github.com/user-attachments/assets/d0f71a64-2604-4e03-acbe-ed4743c05505" />
 
-3
+### 3️⃣Інформація про прибутковість клієнтів 
+
 <img width="1280" height="782" alt="image" src="https://github.com/user-attachments/assets/97298c9f-443f-4239-bd9d-c6f5fdbcab4a" />
-<img width="427" height="616" alt="image" src="https://github.com/user-attachments/assets/544591bb-2c07-41b1-835d-10a36ffc2158" />
 
-4
+### 4️⃣Загальна інформація по клієнтам 
+
 <img width="1280" height="782" alt="image" src="https://github.com/user-attachments/assets/b648d496-5471-4118-85a4-2a8f5800dc2f" />
 
+### 🗒️Tooltip-и та їх застосування
+До кожної таблиці створив Tooltip з корисною інформацією, нижче приклади та використання.
+
+### 1️⃣Загальна інформація по Продажам
+
+<img width="422" height="214" alt="image" src="https://github.com/user-attachments/assets/c839bbba-44b9-4f4b-8d69-f3022f4ff6f4" />
+
+### Використання
+
+<img width="1280" height="783" alt="image" src="https://github.com/user-attachments/assets/acca4633-e7f7-4831-9d68-8e75dd1cc481" />
+
+### 2️⃣Продажі по Брендам і Класам 
+
+<img width="424" height="315" alt="image" src="https://github.com/user-attachments/assets/46612582-3540-4859-827e-962913bd9160" />
+
+### Використання
+
+<img width="1280" height="781" alt="image" src="https://github.com/user-attachments/assets/a396a51c-4c50-4e84-820d-57c33feb14d7" />
+
+### 3️⃣Інформація про прибутковість клієнтів
+
+<img width="427" height="616" alt="image" src="https://github.com/user-attachments/assets/0fc11c50-8355-4670-9752-d120ab8c2493" />
+
+### Використання
+
+<img width="1280" height="780" alt="image" src="https://github.com/user-attachments/assets/6452aa08-7ae3-4f51-9952-81ceea5e5d7b" />
+
+### 4️⃣Загальна інформація по клієнтам 
+
+<img width="316" height="105" alt="image" src="https://github.com/user-attachments/assets/424a656e-8a31-48e6-8cd3-e2f90bca89a1" />
+
+Дякую за увагу!
