@@ -54,5 +54,24 @@
 Маю досвід написання великих кодів з десятком CTE блоків (RFM+.sql)
 
 ### Power BI візуалізація (DashBoard) 
-в процесі!😄
-тест для подальшої праці
+1
+<img width="1280" height="773" alt="image" src="https://github.com/user-attachments/assets/6b9bd75e-54e7-476e-9062-f86dcb7a5d0a" />
+<img width="422" height="214" alt="image" src="https://github.com/user-attachments/assets/0850e019-cf60-4621-8749-a218920a9d5f" />
+
+2
+<img width="1280" height="779" alt="image" src="https://github.com/user-attachments/assets/cba16295-81e2-4fdc-bdb8-1a819433c62f" />
+
+<img width="1280" height="779" alt="image" src="https://github.com/user-attachments/assets/32a49895-e0ba-4041-b117-d73b958abc3d" />
+
+<img width="1280" height="782" alt="image" src="https://github.com/user-attachments/assets/a3bcc8d3-3c0b-4c57-b77d-2debf3b9b69f" />
+
+<img width="1280" height="780" alt="image" src="https://github.com/user-attachments/assets/a43c482a-2d00-4ce8-a22a-50aec6b2c5a0" />
+<img width="424" height="315" alt="image" src="https://github.com/user-attachments/assets/1a193f03-2a19-4feb-935c-997ebdff0429" />
+
+3
+<img width="1280" height="782" alt="image" src="https://github.com/user-attachments/assets/97298c9f-443f-4239-bd9d-c6f5fdbcab4a" />
+<img width="427" height="616" alt="image" src="https://github.com/user-attachments/assets/544591bb-2c07-41b1-835d-10a36ffc2158" />
+
+4
+<img width="1280" height="782" alt="image" src="https://github.com/user-attachments/assets/b648d496-5471-4118-85a4-2a8f5800dc2f" />
+
