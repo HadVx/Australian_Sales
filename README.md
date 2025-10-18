@@ -5,7 +5,7 @@
 
 :link:Дані взяв звідси: [GitHub](https://github.com/Youtube-NikitaTymoshenko/googleSheets-course/tree/main/%D0%94%D0%B0%D0%BD%D1%96%20%D0%B4%D0%BB%D1%8F%20%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%B8)
 
-📎 Для детальнішого перегляду роботи запрошую в папки tables, power BI (в розробці), SQL та 🔗[google sheets](https://docs.google.com/spreadsheets/d/192K1SStzX3pPXUlqU6cPoZ3ul7pr-YdZVEo-Jw9PxlU/edit?usp=sharing) з повними версіями таблиць, коду та візуалізацій!
+📎 Для детальнішого перегляду роботи запрошую в папки tables, power BI, SQL та 🔗[google sheets](https://docs.google.com/spreadsheets/d/192K1SStzX3pPXUlqU6cPoZ3ul7pr-YdZVEo-Jw9PxlU/edit?usp=sharing) з повними версіями таблиць, коду та візуалізацій!
 
 ### :green_book: Нижче розміщені фото-звіти роботи з метою демонстрації моїх можливостей, в межах цього проекту.
 ## 👁️‍🗨️Опрацювання даних в Google Sheets
@@ -138,3 +138,6 @@
     VAR null_stars = REPT("☆", 5 - AvgScore)
     RETURN
     full_stars & null_stars
+# 📝Підсумок
+Дані було взято в сирому вигляді, занормовано, проаналізовано, трансформовано в SQL та Google Sheets та візуалізовано в двох середовищах для зручного сприйняття інформації.
+### Аналіз результатів проекту залишаю на самостійне опрацювання; даний проект створено для демострації моїх навичок роботи з даними.
